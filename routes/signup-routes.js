@@ -1,5 +1,14 @@
 const express = require('express');
 const router = express.Router();
+const mysql = require('mysql');
+
+// Create a MySQL connection pool
+const pool = mysql.createPool({
+  host: 'your_mysql_host',
+  user: 'your_mysql_username',
+  password: 'your_mysql_password',
+  database: 'your_mysql_database',
+});
 
 // Define the signup route
 router.post('/signup', (req, res) => {
@@ -9,18 +18,15 @@ router.post('/signup', (req, res) => {
   // Perform any necessary validation or data processing
 
   // Save the user data to the database
-  // Replace this with your own implementation
-  // For example, if you have a User model defined:
-  // User.create({ username, email, password })
-  //   .then(() => {
-  //     res.json({ message: 'Signup successful' });
-  //   })
-  //   .catch((error) => {
-  //     res.status(500).json({ error: 'Error saving user to database' });
-  //   });
-
-  // Return a response to the client
-  res.json({ message: 'Signup successful' });
+  const query = 'INSERT INTO users (username, email, password) VALUES (?, ?, ?)';
+  pool.query(query, [username, email, password], (error, results) => {
+    if (error) {
+      console.error('Error saving user to database:', error);
+      res.status(500).json({ error: 'Error saving user to database' });
+    } else {
+      res.json({ message: 'Signup successful' });
+    }
+  });
 });
 
 module.exports = router;
