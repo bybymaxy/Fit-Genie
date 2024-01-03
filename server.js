@@ -2,6 +2,7 @@ const path = require('path');
 const express = require('express');
 const session = require('express-session');
 const exphbs = require('express-handlebars');
+const axios = require('axios'); // Import Axios
 const routes = require('./controllers');
 const helpers = require('./utils middleware/helpers');
 
@@ -15,24 +16,15 @@ const PORT = process.env.PORT || 3001;
 const hbs = exphbs.create({ helpers });
 
 const sess = {
-  // Signs the session
   secret: 'Super secret secret',
-  // This IS essentially the session
   cookie: {
-    // when the cookie will expire (in ms)
     maxAge: 300000,
-    // prevents access through JS in the client
     httpOnly: true,
-    // Server and Client will reject if not served from HTTPS
     secure: false,
-    // Only sites on the same domain can use this cookie
     sameSite: 'strict',
   },
-  // forces the session to be saved even if nothing changed
   resave: false,
-  // forces a session to be saved when it is new regardless of if anything has changed
   saveUninitialized: true,
-  // where to store the session on the server
   store: new SequelizeStore({
     db: sequelize
   })
@@ -48,19 +40,22 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Middleware to fetch data from Wger API
+app.use(async (req, res, next) => {
+  try {
+    // Fetch data from Wger API
+    const response = await axios.get('https://wger.de/api/v2/exercise/');
+    req.wgerData = response.data;
+    next();
+  } catch (error) {
+    console.error('Error fetching data from Wger API:', error);
+    next(error);
+  }
+});
+
+// Use routes from the controllers
 app.use(routes);
 
 sequelize.sync({ force: false }).then(() => {
-  app.listen(PORT, () => console.log('Now listening'));
+  app.listen(PORT, () => console.log(`Now listening on http://localhost:${PORT}`));
 });
-
-fetch('https://api.example.com/data')
-  .then(response => response.json())
-  .then(data => {
-    // Process the data returned by the API
-    console.log(data);
-  })
-  .catch(error => {
-    // Handle any errors that occurred during the API call
-    console.error(error);
-  });
