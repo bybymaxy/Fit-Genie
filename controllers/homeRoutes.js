@@ -1,10 +1,7 @@
 const router = require('express').Router();
 const { User } = require('../models');
-<<<<<<<<< Temporary merge branch 1
+
 const withAuth = require('../utils/auth.js');
-=========
-const withAuth = require('../utils/auth.js');
->>>>>>>>> Temporary merge branch 2
 
 router.get('/', async (req, res) => {
   res.render('homepage')
