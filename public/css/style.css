@@ -1,1 +1,4 @@
-/* style me */
+.form-control {
+    display: block;
+    width: 30%;
+}
