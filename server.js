@@ -4,7 +4,7 @@ const session = require('express-session');
 const exphbs = require('express-handlebars');
 const axios = require('axios'); // Import Axios
 const routes = require('./controllers');
-const helpers = require('./utils middleware/helpers.js');
+const helpers = require('./utils/helpers.js');
 
 const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
