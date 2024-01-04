@@ -2,6 +2,9 @@ const backgroundImages = [
   "clean.jpg",
   "cycle.webp",
   "dumbbells.jpg",
+  "ropes.jpg",
+  "run.jpg",
+  "swimming.jpg",
   // Add more image URLs here
 ];
 
