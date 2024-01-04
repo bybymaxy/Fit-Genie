@@ -2,3 +2,8 @@
     display: block;
     width: 30%;
 }
+body {
+    /* background-image: url({{selectedImage}}); */
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
