@@ -4,7 +4,11 @@ const session = require('express-session');
 const exphbs = require('express-handlebars');
 const axios = require('axios'); // Import Axios
 const routes = require('./controllers');
+<<<<<<<<< Temporary merge branch 1
 const helpers = require('./utils/helpers');
+=========
+const helpers = require('./utils/helpers.js');
+>>>>>>>>> Temporary merge branch 2
 
 const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);

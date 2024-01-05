@@ -6,7 +6,7 @@ const axios = require("axios");
 
 // Middleware to include the Authorization header
 const includeAuthorizationHeader = (req, res, next) => {
-  req.headers["Authorization"] = "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";
+  req.headers["Authorization"] = "";
   next();
 };
 
