@@ -4,7 +4,6 @@ const session = require('express-session');
 const exphbs = require('express-handlebars');
 const axios = require('axios');
 const routes = require('./controllers');
-<<<<<<<<< Temporary merge branch 1
 const helpers = require('./utils/helpers');
 const usersController = require('./controllers/api/usersController');
 const sequelize = require('./config/connection');
