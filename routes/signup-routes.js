@@ -4,10 +4,10 @@ const mysql = require('mysql');
 
 // Create a MySQL connection pool
 const pool = mysql.createPool({
-  host: 'your_mysql_host',
-  user: 'your_mysql_username',
-  password: 'your_mysql_password',
-  database: 'your_mysql_database',
+  host: 'localhost',
+  user: 'root',
+  password: '!z<DuiPi|0xUrF',
+  database: 'fitness_app',
 });
 
 // Define the signup route
