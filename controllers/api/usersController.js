@@ -1,9 +1,8 @@
-
-const { User } = require('../../models/User'); // Assuming you have a User model defined
+const { User } = require('../../models');
 
 const getUsers = async (req, res) => {
   try {
-    const users = await User.findAll(); // Retrieve all users from the database
+    const users = await User.findAll();
     res.json(users);
   } catch (error) {
     console.error('Error retrieving users:', error);

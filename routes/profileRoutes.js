@@ -5,6 +5,6 @@ const router = express.Router();
 const profileController = require("../controllers/api/profileController");
 
 // Define the route for the "/profile" endpoint
-router.post("/", profileController.handleProfileSubmission);
+router.get("/", profileController.getProfilePage);
 
 module.exports = router;

@@ -1,4 +1,4 @@
-const openai= require('openai');
+const openai = require('openai');
 const path = require('path');
 const express = require('express');
 const session = require('express-session');
@@ -6,13 +6,12 @@ const exphbs = require('express-handlebars');
 const axios = require('axios');
 const routes = require('./controllers');
 const helpers = require('./utils/helpers');
-const getUsers = require('./controllers/api/usersController');
+const { User } = require('./models/User');
 const profileRoutes = require("./routes/profileRoutes");
 const usersController = require('./controllers/api/usersController');
-
+const { getUsers } = require('./controllers/api/usersController');
 const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
-
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -54,11 +53,26 @@ app.use(async (req, res, next) => {
   }
 });
 
-app.use('/api/users', usersController);
 
 app.use("/profile", profileRoutes);
 
-app.get('/api/users', getUsers);
+
+
+
+app.use('/api/users', usersController);
+
+app.get('/api/users', (req, res) => {
+  // Handle the GET request for the "/api/users" endpoint here
+  // For example, you can retrieve the list of users from a database and send it as a response
+  const users = [
+    { id: 1, name: 'John' },
+    { id: 2, name: 'Jane' },
+    { id: 3, name: 'Bob' }
+  ];
+  res.json(users);
+});
+
+
 
 app.use(routes);
 
