@@ -2,17 +2,17 @@ const path = require('path');
 const express = require('express');
 const session = require('express-session');
 const exphbs = require('express-handlebars');
-const axios = require('axios'); // Import Axios
+const axios = require('axios');
 const routes = require('./controllers');
 const helpers = require('./utils/helpers');
-
+const usersController = require('./controllers/api/usersController');
 const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
+const getUsers = require('./controllers/api/usersController');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-// Set up Handlebars.js engine with custom helpers
 const hbs = exphbs.create({ helpers });
 
 const sess = {
@@ -32,7 +32,6 @@ const sess = {
 
 app.use(session(sess));
 
-// Inform Express.js on which template engine to use
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
@@ -40,10 +39,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Middleware to fetch data from Wger API
 app.use(async (req, res, next) => {
   try {
-    // Fetch data from Wger API
     const response = await axios.get('https://wger.de/api/v2/exercise/');
     req.wgerData = response.data;
     next();
@@ -53,7 +50,10 @@ app.use(async (req, res, next) => {
   }
 });
 
-// Use routes from the controllers
+app.use('/api/users', usersController); // Add this line for the "/api/users" route
+
+app.get('/api/users', getUsers);
+
 app.use(routes);
 
 sequelize.sync({ force: false }).then(() => {

@@ -24,7 +24,8 @@ router.post('/signup', (req, res) => {
       console.error('Error saving user to database:', error);
       res.status(500).json({ error: 'Error saving user to database' });
     } else {
-      res.json({ message: 'Signup successful' });
+      // Redirect to the login page after successful signup
+      res.redirect('/login');
     }
   });
 });
