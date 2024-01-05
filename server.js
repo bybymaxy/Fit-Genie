@@ -29,8 +29,8 @@ const sess = {
   resave: false,
   saveUninitialized: true,
   store: new SequelizeStore({
-    db: sequelize
-  })
+    db: sequelize,
+  }),
 };
 
 app.use(session(sess));
@@ -54,6 +54,7 @@ app.use(async (req, res, next) => {
 });
 
 
+
 app.use("/profile", profileRoutes);
 
 
@@ -72,6 +73,22 @@ app.get('/api/users', (req, res) => {
   res.json(users);
 });
 
+
+
+
+// Add the submit-prompt route
+app.post('./submit-prompts', async (req, res) => {
+  const openaiInstance = new openai.OpenAI();
+
+  // Retrieve the prompt from the request body
+  const prompt = req.body.prompt;
+
+  // Generate response using OpenAI
+  const response = await openaiInstance.generateText(prompt);
+
+  // Send the response back to the client
+  res.json({ response: response.data.text });
+});
 
 
 app.use(routes);
