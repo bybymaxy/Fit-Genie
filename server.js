@@ -6,6 +6,10 @@ const exphbs = require('express-handlebars');
 const axios = require('axios');
 const routes = require('./controllers');
 const helpers = require('./utils/helpers');
+const { User } = require('./models/User');
+const profileRoutes = require("./routes/profileRoutes");
+const usersController = require('./controllers/api/usersController');
+const { getUsers } = require('./controllers/api/usersController');
 const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
@@ -49,6 +53,29 @@ app.use(async (req, res, next) => {
   }
 });
 
+
+
+app.use("/profile", profileRoutes);
+
+
+
+
+app.use('/api/users', usersController);
+
+app.get('/api/users', (req, res) => {
+  // Handle the GET request for the "/api/users" endpoint here
+  // For example, you can retrieve the list of users from a database and send it as a response
+  const users = [
+    { id: 1, name: 'John' },
+    { id: 2, name: 'Jane' },
+    { id: 3, name: 'Bob' }
+  ];
+  res.json(users);
+});
+
+
+
+
 // Add the submit-prompt route
 app.post('./submit-prompts', async (req, res) => {
   const openaiInstance = new openai.OpenAI();
@@ -62,6 +89,7 @@ app.post('./submit-prompts', async (req, res) => {
   // Send the response back to the client
   res.json({ response: response.data.text });
 });
+
 
 app.use(routes);
 
