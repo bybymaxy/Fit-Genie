@@ -7,7 +7,6 @@ const router = express.Router();
 router.post('/signup', (req, res) => {
   // Process the signup form data
   const { username, email, password } = req.body;
-
   
 
   // Perform any necessary validation or data processing
