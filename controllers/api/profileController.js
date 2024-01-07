@@ -1,10 +1,20 @@
 const getProfilePage = (req, res) => {
   // Logic to retrieve necessary data for the profile page
-  const userId = req.user.id; // Assuming you have implemented user authentication and have access to the user's ID
+  console.log(req.user);
+  // Check if user is authenticated and has an ID
+  if (!req.user || !req.user.id) {
+    return res.status(401).json({ error: 'User not authenticated' });
+  }
+
+  const userId = req.user.id;
 
   // Retrieve user profile data from the database based on the user ID
   User.findById(userId)
     .then((user) => {
+      if (!user) {
+        return res.status(404).json({ error: 'User not found' });
+      }
+
       // Render the profile page view and pass the user profile data to the view
       res.render('profile', { user });
     })
