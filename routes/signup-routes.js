@@ -7,7 +7,7 @@ const dotenv = require('dotenv').config();
 const pool = mysql.createPool({
   host: 'localhost',
   user: 'root',
-  password: 'process.env.DB_PASSWORD',
+  password: process.env.DB_PASSWORD,
   database: 'fitness_app',
 });
 

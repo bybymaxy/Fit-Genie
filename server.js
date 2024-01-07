@@ -4,7 +4,7 @@ const express = require('express');
 const session = require('express-session');
 const exphbs = require('express-handlebars');
 const axios = require('axios');
-const cors = require('cors'); // Add the cors package
+const cors = require('cors');
 const routes = require('./controllers');
 const helpers = require('./utils/helpers');
 const { User } = require('./models/User');
@@ -42,7 +42,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(cors()); // Add the cors middleware
+app.use(cors());
 
 app.use(async (req, res, next) => {
   try {
@@ -59,8 +59,6 @@ app.use('/profile', profileRoutes);
 app.use('/api/users', usersController);
 
 app.get('/api/users', (req, res) => {
-  // Handle the GET request for the "/api/users" endpoint here
-  // For example, you can retrieve the list of users from a database and send it as a response
   const users = [
     { id: 1, name: 'John' },
     { id: 2, name: 'Jane' },
@@ -69,17 +67,14 @@ app.get('/api/users', (req, res) => {
   res.json(users);
 });
 
-// Add the submit-prompt route
+app.get('/signup', (req, res) => {
+  res.render('signup'); // Render the signup.handlebars view
+});
+
 app.post('/submit-prompts', async (req, res) => {
   const openaiInstance = new openai.OpenAI();
-
-  // Retrieve the prompt from the request body
   const prompt = req.body.prompt;
-
-  // Generate response using OpenAI
   const response = await openaiInstance.generateText(prompt);
-
-  // Send the response back to the client
   res.json({ response: response.data.text });
 });
 
