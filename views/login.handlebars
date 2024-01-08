@@ -8,27 +8,28 @@
   <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 <body>
- 
+
   {{#if logged_in}}
-  <a href="/profile">profile</a> |
+  <a href="/profile">profile</a>
   <button class="no-button" id="logout">logout</button>
   {{else}}
-  <main id="main-container">
-    <h1>Login</h1>
+  <main> 
+    <div class="login-container p-2 text-white bg-dark border border-white rounded-4">
+      <h1>Login</h1>
 
-    <form id="login-form">
-      <div>
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
-      </div>
-      <div>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
-      </div>
-      <button type="submit">Login</button>
-    </form>
+      <form id="login-form">
+        <div>
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div>
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" required>
+        </div>
+        <button type="button" class="btn btn-secondary">Login</button>
+      </form>
 
-    <p>Don't have an account? <a href="/signup">Sign up</a></p>
+      <p>Don't have an account? <a href="/signup">Sign up</a></p>
   </main>
   {{/if}}
 

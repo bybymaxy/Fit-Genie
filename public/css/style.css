@@ -10,6 +10,7 @@ body {
     width: 500px;
     margin-left: 30px;
     transform: translateY(25%);
+    background-color: rgba(55, 55, 70, 0.75) !important;
 }
 .form-label {
     color: #f0f8ff;
@@ -34,12 +35,17 @@ body {
     background-color: rgb(38, 144, 117);
     color: #f0f8ff;
 }
+#signup-button {
+    transform: translateY(10px)
+}
 .btn:hover {
     background-color: #034320;
     color: #f0f8ff;
 }
 .navbar {
     background-color: rgb(38, 144, 117);
+    height: 55px;
+    opacity: 0.85;
 }
 .nav-link {
     color: #f0f8ff !important;
@@ -58,4 +64,17 @@ body {
 }
 .navbar-brand:hover {
     color: #034320 !important; /* Change the brand color on hover */
+}
+.login-container {
+    width: 350px;
+    margin-left: 50px;
+    transform: translateY(25%);
+    background-color: rgba(55, 55, 70, 0.75) !important;
+}
+.signup-container {
+    width: 350px;
+    height: 225px;
+    margin-left: 50px;
+    transform: translateY(25%);
+    background-color: rgba(55, 55, 70, 0.75) !important;
 }
