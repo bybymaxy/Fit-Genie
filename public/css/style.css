@@ -13,16 +13,16 @@ body {
     background-color: rgba(55, 55, 70, 0.75) !important;
 }
 .form-label {
-    color: #f0f8ff;
+    color: #ffffff;
 }
 .form-group {
-    color: #f0f8ff;
+    color: #ffffff;
 }
 .col-md-6 {
     padding: 20px;
     width: 400px;
     height: fit-content;
-    color:#f0f8ff;
+    color:#ffffff;
     margin-top: 40px;
     padding-left: 15px;
     padding-top: 10px; 
@@ -32,26 +32,26 @@ body {
     transform: translateY(15%)
 }
 .btn {
-    background-color: rgb(38, 144, 117);
-    color: #f0f8ff;
+    background-color: rgb(31, 83, 74);
+    color: #ffffff;
 }
 #signup-button {
     transform: translateY(10px)
 }
 .btn:hover {
     background-color: #034320;
-    color: #f0f8ff;
+    color: #ffffff;
 }
 .navbar {
-    background-color: rgb(38, 144, 117);
+    background-color: rgb(31, 83, 74);
     height: 55px;
     opacity: 0.85;
 }
 .nav-link {
-    color: #f0f8ff !important;
+    color: #ffffff !important;
 }
 .navbar-brand {
-    color: #f0f8ff;
+    color: #ffffff;
     font-size: xx-large;
 }
 .collapse.navbar-collapse {
