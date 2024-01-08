@@ -1,22 +1,22 @@
+const openai = require('openai');
 const path = require('path');
 const express = require('express');
 const session = require('express-session');
 const exphbs = require('express-handlebars');
-const axios = require('axios'); // Import Axios
+const axios = require('axios');
+const cors = require('cors');
 const routes = require('./controllers');
-<<<<<<<<< Temporary merge branch 1
 const helpers = require('./utils/helpers');
-=========
-const helpers = require('./utils/helpers.js');
->>>>>>>>> Temporary merge branch 2
-
+const { User } = require('./models/User');
+const profileRoutes = require('./routes/profileRoutes');
+const usersController = require('./controllers/api/usersController');
+const { getUsers } = require('./controllers/api/usersController');
 const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-// Set up Handlebars.js engine with custom helpers
 const hbs = exphbs.create({ helpers });
 
 const sess = {
@@ -30,13 +30,11 @@ const sess = {
   resave: false,
   saveUninitialized: true,
   store: new SequelizeStore({
-    db: sequelize
-  })
+    db: sequelize,
+  }),
 };
 
 app.use(session(sess));
-
-// Inform Express.js on which template engine to use
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
@@ -44,10 +42,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Middleware to fetch data from Wger API
+app.use(cors());
+
 app.use(async (req, res, next) => {
   try {
-    // Fetch data from Wger API
     const response = await axios.get('https://wger.de/api/v2/exercise/');
     req.wgerData = response.data;
     next();
@@ -57,9 +55,33 @@ app.use(async (req, res, next) => {
   }
 });
 
-// Use routes from the controllers
+app.use('/profile', profileRoutes);
+app.use('/api/users', usersController);
+
+app.get('/api/users', (req, res) => {
+  const users = [
+    { id: 1, name: 'John' },
+    { id: 2, name: 'Jane' },
+    { id: 3, name: 'Bob' },
+  ];
+  res.json(users);
+});
+
+app.get('/signup', (req, res) => {
+  res.render('signup'); // Render the signup.handlebars view
+});
+
+app.post('/submit-prompts', async (req, res) => {
+  const openaiInstance = new openai.OpenAI();
+  const prompt = req.body.prompt;
+  const response = await openaiInstance.generateText(prompt);
+  res.json({ response: response.data.text });
+});
+
 app.use(routes);
 
 sequelize.sync({ force: false }).then(() => {
-  app.listen(PORT, () => console.log(`Now listening on http://localhost:${PORT}`));
+  app.listen(PORT, () =>
+    console.log(`Now listening on http://localhost:${PORT}`)
+  );
 });

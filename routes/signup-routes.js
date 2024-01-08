@@ -1,12 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const mysql = require('mysql');
+const dotenv = require('dotenv').config();
 
 // Create a MySQL connection pool
 const pool = mysql.createPool({
   host: 'localhost',
   user: 'root',
-  password: '!z<DuiPi|0xUrF',
+  password: process.env.DB_PASSWORD,
   database: 'fitness_app',
 });
 
@@ -24,7 +25,8 @@ router.post('/signup', (req, res) => {
       console.error('Error saving user to database:', error);
       res.status(500).json({ error: 'Error saving user to database' });
     } else {
-      res.json({ message: 'Signup successful' });
+      // Redirect to the login page after successful signup
+      res.redirect('/login');
     }
   });
 });
