@@ -13,7 +13,7 @@
 ${Fit-Genie}
 ## Description
 ${description}
-This is an interactive AI fitness program designer application in which the user enters personal information and fitness goals. The application creates an incremented fitness program using the given fitness goals, resources (exercise modalities and scheduling needs). The user can then track their progress in the app and allow the fitness program to be adjusted accordingly. Take control of your workouts and train as you would with a professional coach. ////
+This is an interactive AI fitness program designer application in which the user enters personal information and fitness goals. The application creates an incremented fitness program using the given fitness goals, resources (exercise modalities and scheduling needs). The user can then track their progress in the app and allow the fitness program to be adjusted accordingly. Take control of your workouts and train as you would with a professional coach.
 ## Installation
 ${installation}
 inquirer
