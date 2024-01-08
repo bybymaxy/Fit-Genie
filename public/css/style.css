@@ -32,14 +32,14 @@ body {
     transform: translateY(15%)
 }
 .btn {
-    background-color: rgb(31, 83, 74);
+    background-color: rgb(51, 86, 168);
     color: #ffffff;
 }
 #signup-button {
     transform: translateY(10px)
 }
 .btn:hover {
-    background-color: #034320;
+    background-color: #0c1667;
     color: #ffffff;
 }
 .navbar {
@@ -60,10 +60,10 @@ body {
     padding-left: 10px;
 }
 .navbar-nav .nav-link:hover {
-    color: #034320 !important; /* Change the color on hover */
+    background-color: #034320;
 }
 .navbar-brand:hover {
-    color: #034320 !important; /* Change the brand color on hover */
+    color: #ffffff !important; /* Change the brand color on hover */
 }
 .login-container {
     width: 350px;

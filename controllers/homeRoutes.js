@@ -3,8 +3,8 @@ const { User } = require('../models');
 
 const withAuth = require('../utils/auth.js');
 
-router.get('/', async (req, res) => {
-  res.render('homepage')
+router.get('/homepage', (req, res) => {
+  res.render('/homepage')
 });
 
 router.get('/login', (req, res) => {
