@@ -1,4 +1,5 @@
 const express = require('express');
+const app = express();
 const router = express.Router();
 const mysql = require('mysql');
 const dotenv = require('dotenv').config();
@@ -31,4 +32,10 @@ router.post('/signup', (req, res) => {
   });
 });
 
-module.exports = router;
+// Register the router with the Express application
+app.use('/', router);
+
+// Start the server
+app.listen(3001, () => {
+  console.log('Server is running on http://localhost:3001');
+});
