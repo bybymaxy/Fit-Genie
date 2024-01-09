@@ -7,9 +7,7 @@ router.get('/', (req, res) => {
   res.render('homepage')
 });
 
-router.get('/homepage', (req, res) => {
-  res.render('homepage')
-});
+
 //questions get routes
 router.get('/questions1', (req, res) => {
   res.render('questions1')
