@@ -4,7 +4,7 @@ const { User } = require('../models');
 const withAuth = require('../utils/auth.js');
 
 router.get('/', (req, res) => {
-  res.render('questions1')
+  res.render('homepage')
 });
 
 router.get('/homepage', (req, res) => {
