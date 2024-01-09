@@ -1,3 +1,6 @@
+const router = require('express').Router();
+const { profile } = require('../../models');
+
 const getProfilePage = (req, res) => {
   // Logic to retrieve necessary data for the profile page
   console.log(req.user);
