@@ -1,23 +1,25 @@
-const openai = require('openai');
-const path = require('path');
+require('dotenv').config();
 const express = require('express');
 const session = require('express-session');
 const exphbs = require('express-handlebars');
 const axios = require('axios');
 const cors = require('cors');
-const routes = require('./controllers');
-const helpers = require('./utils/helpers');
-const { User } = require('./models/User');
+const openai = require('openai');
+const path = require('path');
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
+const { User } = require('./models/user');
 const profileRoutes = require('./routes/profileRoutes');
 const usersController = require('./controllers/api/usersController');
-const { getUsers } = require('./controllers/api/usersController');
+const controllers = require('./controllers/api/index');
+const signupRoutes = require('./routes/signupRoutes');
+const fitnessController = require('./controllers/api/fitnessController');
+const apiRoutes = require('./routes/apiRoutes');
 const sequelize = require('./config/connection');
-const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-const hbs = exphbs.create({ helpers });
+const hbs = exphbs.create();
 
 const sess = {
   secret: 'Super secret secret',
@@ -40,9 +42,12 @@ app.set('view engine', 'handlebars');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'controllers')));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(cors());
+app.use(controllers);
+app.use(routes);
 
 app.use(async (req, res, next) => {
   try {
@@ -68,17 +73,49 @@ app.get('/api/users', (req, res) => {
 });
 
 app.get('/signup', (req, res) => {
-  res.render('signup'); // Render the signup.handlebars view
+  res.render('signup');
 });
 
-app.post('/submit-prompts', async (req, res) => {
-  const openaiInstance = new openai.OpenAI();
+const openaiInstance = new openai.OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+});
+
+let availableEngines;
+(async () => {
+  try {
+    const response = await axios.get('https://api.openai.com/v1/engines', {
+      headers: {
+        Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+      },
+    });
+    availableEngines = response.data.data;
+  } catch (error) {
+    console.error('Error fetching available engines:', error);
+  }
+})();
+
+app.post('/submitPrompts', async (req, res) => {
   const prompt = req.body.prompt;
-  const response = await openaiInstance.generateText(prompt);
-  res.json({ response: response.data.text });
+  try {
+    const latestEngine = availableEngines[0].id;
+    const response = await axios.post(
+      `https://api.openai.com/v1/engines/${latestEngine}/completions`,
+      {
+        prompt: prompt,
+        max_tokens: 100,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+        },
+      }
+    );
+    res.json({ response: response.data.choices[0].text });
+  } catch (error) {
+    console.error('Error calling OpenAI API:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
 });
-
-app.use(routes);
 
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () =>
