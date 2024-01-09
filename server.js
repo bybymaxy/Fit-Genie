@@ -1,5 +1,4 @@
-const openai = require('openai');
-const path = require('path');
+require('dotenv').config();
 const express = require('express');
 const session = require('express-session');
 const exphbs = require('express-handlebars');
@@ -9,14 +8,16 @@ const routes = require('./controllers');
 const helpers = require('./utils/helpers');
 const profileRoutes = require('./routes/profileRoutes');
 const usersController = require('./controllers/api/usersController');
-const { getUsers } = require('./controllers/api/usersController');
+const controllers = require('./controllers/api/index');
+const signupRoutes = require('./routes/signupRoutes');
+const fitnessController = require('./controllers/api/fitnessController');
+const apiRoutes = require('./routes/apiRoutes');
 const sequelize = require('./config/connection');
-const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-const hbs = exphbs.create({ helpers });
+const hbs = exphbs.create();
 
 const sess = {
   secret: 'Super secret secret',
@@ -39,6 +40,7 @@ app.set('view engine', 'handlebars');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'controllers')));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(routes);
