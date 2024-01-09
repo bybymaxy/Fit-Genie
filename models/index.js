@@ -1,7 +1,7 @@
 const User = require('./User');
 //import models
 const fitness = require('./fitness');
-const profile = require('./profile');
+const Profile = require('./profile');
 const submit = require('./submit')
 
 //association methods for the Sequelize models to create relationships between them
@@ -30,4 +30,4 @@ User.hasMany(submit, {
 //Export User,Post and Comment
 
 
-module.exports = { User, profile, fitness, submit};
+module.exports = { User, Profile, fitness, submit};
