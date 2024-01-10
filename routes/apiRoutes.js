@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const fitnessController = require("./controllers/api/fitnessController");
+const fitnessController = require("../controllers/fitnessController");
 const axios = require("axios");
 
 
