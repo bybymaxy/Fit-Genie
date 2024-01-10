@@ -1,8 +1,8 @@
 const router = require('express').Router();
 const { User } = require('../models');
+
 const withAuth = require('../utils/auth.js');
 
-<<<<<<< HEAD
 
 router.get('/', async (req, res) => {
   try {
@@ -85,25 +85,14 @@ router.get('/profile', withAuth, async (req, res) => {
   }
 })
 
-=======
-// Render the promptForm view for the root and /promptForm routes
-router.get(['/', '/promptForm'], (req, res) => {
-  res.render('promptForm');
-});
 
-// Render the homepage view for the /homepage route
-router.get('/homepage', (req, res) => {
-  res.render('homepage');
-});
->>>>>>> aef7c903e3e28c3b77e2c5ebc46ee1be4f3ec4e9
-
-// Render the login view or redirect to /profile if already logged in
 router.get('/login', (req, res) => {
   if (req.session.logged_in) {
     res.redirect('/profile');
-  } else {
-    res.render('login');
+    return;
   }
+
+  res.render('login');
 });
 
 module.exports = router;

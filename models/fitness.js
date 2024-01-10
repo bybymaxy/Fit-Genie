@@ -1,5 +1,5 @@
 module.exports = function (sequelize, DataTypes) {
-  var Fitness = sequelize.define('Fitness', {
+  var Fitness = sequelize.define("Fitness", {
     exercise: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -9,6 +9,5 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: false,
     },
   });
-
   return Fitness;
 };
