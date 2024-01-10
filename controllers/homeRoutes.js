@@ -3,6 +3,7 @@ const { User } = require('../models');
 
 const withAuth = require('../utils/auth.js');
 
+
 router.get('/', async (req, res) => {
   try {
                                // data to be requested 
@@ -22,6 +23,8 @@ router.get('/homepage', async (req, res) => {
   }
   
 });
+
+
 //questions get routes
 router.get('/questions1', async (req, res) => {
   try { 
