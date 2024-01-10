@@ -55,6 +55,36 @@ router.get('/questions3', async (req, res) => {
 });
 //route for 
 
+router.get('/signup', async (req, res) => {
+  try {
+    
+    res.render('signup')
+  } catch (err) {
+    console.log(err)
+    res.status(500).json(err)
+  }
+})
+
+
+router.get('/profile', withAuth, async (req, res) => {
+  try {
+    // Find the logged in user based on the sessions id
+    const userData = await User.findByPk(req.session.user_id, {
+      attributes: { exclude: ['password'] },
+    })
+
+    const user = userData.get({plain: true});
+
+    res.render('profile', {
+      ...user,
+      logged_in: true
+    })
+  } catch (err) {
+    console.log(err)
+    res.status(500).json(err)
+  }
+})
+
 
 router.get('/login', (req, res) => {
   if (req.session.logged_in) {
