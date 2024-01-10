@@ -7,7 +7,6 @@ const axios = require('axios');
 const cors = require('cors');
 const routes = require('./controllers');
 const helpers = require('./utils/helpers');
-const { User } = require('./models/User');
 const profileRoutes = require('./routes/profileRoutes');
 const usersController = require('./controllers/api/usersController');
 const { getUsers } = require('./controllers/api/usersController');
@@ -41,42 +40,6 @@ app.set('view engine', 'handlebars');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
-
-app.use(cors());
-
-app.use(async (req, res, next) => {
-  try {
-    const response = await axios.get('https://wger.de/api/v2/exercise/');
-    req.wgerData = response.data;
-    next();
-  } catch (error) {
-    console.error('Error fetching data from Wger API:', error);
-    next(error);
-  }
-});
-
-app.use('/profile', profileRoutes);
-app.use('/api/users', usersController);
-
-app.get('/api/users', (req, res) => {
-  const users = [
-    { id: 1, name: 'John' },
-    { id: 2, name: 'Jane' },
-    { id: 3, name: 'Bob' },
-  ];
-  res.json(users);
-});
-
-app.get('/signup', (req, res) => {
-  res.render('signup'); // Render the signup.handlebars view
-});
-
-app.post('/submit-prompts', async (req, res) => {
-  const openaiInstance = new openai.OpenAI();
-  const prompt = req.body.prompt;
-  const response = await openaiInstance.generateText(prompt);
-  res.json({ response: response.data.text });
-});
 
 app.use(routes);
 
