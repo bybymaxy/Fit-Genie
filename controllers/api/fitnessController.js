@@ -9,4 +9,3 @@ module.exports = {
     db.Fitness.create(req.body).then((data) => res.json(data));
   },
 };
-
