@@ -32,7 +32,7 @@ submitButton.addEventListener('click', async () => {
       const workoutPlanContainer = document.getElementById('workoutPlanContainer');
       workoutPlanContainer.innerHTML = `<p>${workoutPlan}</p>`;
       // Handle the response from the server as needed
-      console.log('Full API Response:', response);
+      console.log('API Response:', response.data);
 
     } catch (error) {
       // Handle errors
