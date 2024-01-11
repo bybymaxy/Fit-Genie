@@ -21,7 +21,7 @@ router.get('/homepage', async (req, res) => {
   } catch (err) {
     res.status(500).json(err); // error handling
   }
-  
+
 });
 
 
@@ -42,7 +42,7 @@ try {
 } catch (err) {
   res.status(500).json(err); // error handling
 }
-  
+
 });
 router.get('/questions3', async (req, res) => {
   try {
@@ -68,7 +68,7 @@ router.get('/apiresponse', async (req, res) => {
 
 router.get('/signup', async (req, res) => {
   try {
-    
+
     res.render('signup')
   } catch (err) {
     console.log(err)
