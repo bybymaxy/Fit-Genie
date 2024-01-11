@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const openai = require('openai');
 const path = require('path');
 const express = require('express');
