@@ -55,6 +55,17 @@ router.get('/questions3', async (req, res) => {
 });
 //route for 
 
+router.get('/apiresponse', async (req, res) => {
+  try {
+                              // data to be requested
+    res.render('apiresponse')
+  }
+  catch (err) {
+    res.status(500).json(err); // error handling
+  }
+}); 
+
+
 router.get('/signup', async (req, res) => {
   try {
     

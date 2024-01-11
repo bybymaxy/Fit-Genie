@@ -1,23 +1,25 @@
 
      <div class="questions-container p-2 text-white bg-dark border border-white rounded-4">
         <div class="mb-3">
-        <label for="question1" class="form-label">How would you describe your current fitness level?</label>
-        <input type="text" class="form-control">
+        <label for="question11" class="form-label">How would you describe your current fitness level?</label>
+        <input id="question11" type="text" class="form-control">
         </div>
         <div class="mb-3">
-        <label for="question2" class="form-label">Are there any specific areas of your body you would like to focus on or improve?</label>
-        <input type="text" class="form-control">
+        <label for="question12" class="form-label">Are there any specific areas of your body you would like to focus on or improve?</label>
+        <input id="question12" type="text" class="form-control">
         </div>
           <div class="mb-3">
-        <label for="question3" class="form-label">How do you prefer to track your progress?
+        <label for="question13" class="form-label">How do you prefer to track your progress?
 Examples: Weight scale, Measurements (waist, hips, etc.), Performance metrics (running distance, lifting weights), Visual changes, Other (please specify)
 </label>
-        <input type="text" class="form-control">
+        <input id="question13" type="text" class="form-control">
           </div>
           <div class="mb-3">
-        <label for="question4" class="form-label">Do you have any existing medical conditions or injuries that may affect your ability to exercise?</label>
-        <input type="text" class="form-control">
+        <label for="question14" class="form-label">Do you have any existing medical conditions or injuries that may affect your ability to exercise?</label>
+        <input id="question14" type="text" class="form-control">
           </div>
         <a type="button" class="btn btn-secondary" href="/questions2">Back</a>
-        <button type="button" class="btn btn-secondary">Submit</button>
+        <a type="submit" class="btn btn-secondary" id="submitButton" href="/apiresponse">Submit</a>
     </div>
+
+    <script src="/js/submit-prompts.js"></script>
