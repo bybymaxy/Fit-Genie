@@ -78,3 +78,12 @@ body {
     transform: translateY(25%);
     background-color: rgba(55, 55, 70, 0.75) !important;
 }
+
+.text {
+    color: aliceblue;
+}
+
+.fields {
+   background-color: hsla(0, 100%, 50%, 0)
+}
+
