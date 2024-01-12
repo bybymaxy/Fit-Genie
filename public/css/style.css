@@ -83,5 +83,5 @@ body {
     height: auto; /* Maintain the aspect ratio */
     position: absolute;
     top: 10px; /* Adjust the top position to your desired value */
-    left: 10px; /* Adjust the left position to your desired value */
+    left: 250px; /* Adjust the left position to your desired value */
   }

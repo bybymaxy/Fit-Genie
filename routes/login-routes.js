@@ -2,7 +2,7 @@
 
 const express = require('express');
 const router = express.Router();
-const { User } = require('../models'); // Assuming you have a User model defined
+const { User } = require('../models/User'); // Assuming you have a User model defined
 const loginController = require('../controllers/login');
 
 // GET route to display the login form
