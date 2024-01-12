@@ -78,6 +78,7 @@ body {
     transform: translateY(25%);
     background-color: rgba(55, 55, 70, 0.75) !important;
 }
+<<<<<<< HEAD
 
 .text {
     color: aliceblue;
@@ -87,3 +88,12 @@ body {
    background-color: hsla(0, 100%, 50%, 0)
 }
 
+=======
+.logo {
+    width: 100px; /* Adjust the width to your desired size */
+    height: auto; /* Maintain the aspect ratio */
+    position: absolute;
+    top: 10px; /* Adjust the top position to your desired value */
+    left: 250px; /* Adjust the left position to your desired value */
+  }
+>>>>>>> 7ae9dfaf32f0d7b9b822aa76e45e557e297ffdb6

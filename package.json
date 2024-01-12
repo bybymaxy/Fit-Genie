@@ -23,6 +23,7 @@
     "express-session": "^1.17.1",
     "handlebars": "^4.7.8",
     "mysql2": "^2.2.5",
+    "node": "^21.2.0",
     "openai": "^4.24.1",
     "sequelize": "^6.3.5"
   },
