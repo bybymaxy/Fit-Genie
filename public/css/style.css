@@ -6,11 +6,22 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
 }
+#brand-title {
+    transform: translateX(61%) translateY(3%);
+    color: #ffffff;
+    font-family: cursive;
+    font-style: italic;
+    font-size: xxx-large;
+    text-decoration: none;
+}
 .questions-container {
     width: 500px;
     margin-left: 30px;
     transform: translateY(25%);
     background-color: rgba(55, 55, 70, 0.75) !important;
+}
+#homepage_message {
+    display: block;
 }
 .form-label {
     color: #ffffff;
@@ -85,6 +96,12 @@ body {
     top: 10px; /* Adjust the top position to your desired value */
     left: 10px; /* Adjust the left position to your desired value */
   }
+  #container1 {
+    display: block;
+  }
   #workoutPlanContainer {
     transform: translateX(27%) translateY(60px)
+  }
+  .hidden {
+    display: none;
   }

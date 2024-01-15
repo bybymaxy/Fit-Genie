@@ -1,23 +1,71 @@
- <div class="questions-container p-2 text-white bg-dark border border-white rounded-4">
-        <div class="mb-3">
-        <label for="question1" class="form-label">What is your age?</label>
-        <input id="question1" type="text" class="form-control">
-        </div>
-        <div class="mb-3">
-        <label  for="question2" class="form-label">What is your current weight?</label>
-        <input id="question2" type="text" class="form-control">
-        </div>
-        <div class="mb-3">
-        <label for="question3" class="form-label">What is your height?</label>
-        <input id="question3" type="text" class="form-control">
-        </div>
-          <div class="mb-3">
-        <label for="question4" class="form-label">What is your target weight?</label>
-        <input id="question4" type="text" class="form-control">
-          </div>
-          <div class="mb-3">
-        <label for="question5" class="form-label">Describe your fitness goals.</label>
-        <input id="question5" type="text" class="form-control">
-          </div>
-        <a type="button" class="btn btn-secondary" href="/questions2">Next</a>
-    </div>
+<div id="container1" class="questions-container p-2 text-white bg-dark border border-white rounded-4">
+  <div class="mb-3">
+    <label for="question1" class="form-label">What is your age?</label>
+    <input id="question1" type="text" class="form-control">
+  </div>
+  <div class="mb-3">
+    <label  for="question2" class="form-label">What is your current weight?</label>
+    <input id="question2" type="text" class="form-control">
+  </div>
+  <div class="mb-3">
+    <label for="question3" class="form-label">What is your height?</label>
+    <input id="question3" type="text" class="form-control">
+  </div>
+  <div class="mb-3">
+    <label for="question4" class="form-label">What is your target weight?</label>
+    <input id="question4" type="text" class="form-control">
+  </div>
+  <div class="mb-3">
+    <label for="question5" class="form-label">Describe your fitness goals.</label>
+    <input id="question5" type="text" class="form-control">
+  </div>
+  <a type="button" class="btn btn-secondary" onclick="showContainer('container2')">Next</a>
+</div>
+<div id="container2" class="questions-container p-2 text-white bg-dark border border-white rounded-4 hidden">
+  <div class="mb-3">
+    <label  for="question6" class="form-label">Do you have membership to a gym?</label>
+    <input id="question6" type="text" class="form-control">
+  </div>
+  <div class="mb-3">
+    <label  for="question7" class="form-label">Do you have access to fitness equipment at home?</label>
+    <input id="question7" type="text" class="form-control">
+  </div>
+  <div class="mb-3">
+    <label for="question8" class="form-label">What are some outdoor activities you enjoy?</label>
+    <input id="question8" type="text" class="form-control">
+  </div>
+  <div class="mb-3">
+    <label for="question9" class="form-label">How many days per week are you able to exercise for an hour or more?</label>
+    <input id="question9" type="text" class="form-control">
+  </div>
+  <div class="mb-3">
+    <label  for="question10" class="form-label">What is your preferred exercise intensity level?</label>
+    <input id="question10" type="text" class="form-control">
+  </div>
+  <a type="button" class="btn btn-secondary" onclick="showContainer('container1')">Back</a>
+  <a type="button" class="btn btn-secondary" onclick="showContainer('container3')">Next</a>
+</div>
+<div id="container3" class="questions-container p-2 text-white bg-dark border border-white rounded-4 hidden">
+  <div class="mb-3">
+    <label for="question11" class="form-label">How would you describe your current fitness level?</label>
+    <input id="question11" type="text" class="form-control">
+  </div>
+  <div class="mb-3">
+    <label for="question12" class="form-label">Are there any specific areas of your body you would like to focus on or improve?</label>
+    <input id="question12" type="text" class="form-control">
+  </div>
+  <div class="mb-3">
+    <label for="question13" class="form-label">How do you prefer to track your progress?
+Examples: Weight scale, Measurements (waist, hips, etc.), Performance metrics (running distance, lifting weights), Visual changes, Other (please specify)</label>
+    <input id="question13" type="text" class="form-control">
+  </div>
+  <div class="mb-3">
+    <label for="question14" class="form-label">Do you have any existing medical conditions or injuries that may affect your ability to exercise?</label>
+    <input id="question14" type="text" class="form-control">
+  </div>
+    <a type="button" class="btn btn-secondary" onclick="showContainer('container2')">Back</a>
+    <a type="submit" class="btn btn-secondary" id="submitButton" onclick="showContainer('container4')">Submit</a>
+</div>
+<div id="container4" class="questions-container p-2 text-white bg-dark border border-white rounded-4 hidden" id="workoutPlanContainer">
+</div>
+
