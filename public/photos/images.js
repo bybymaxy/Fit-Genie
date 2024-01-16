@@ -4,6 +4,9 @@ const backgroundImages = [
   "ropes.jpg",
   "run.jpg",
   "swimming.jpg",
+  "basketball.jpg",
+  "gymnastics.jpg",
+  "hiking.jpg",
   // Add more image URLs here
 ];
 
