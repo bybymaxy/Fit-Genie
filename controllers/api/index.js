@@ -5,10 +5,9 @@ const userRoutes = require('./userRoutes');
 // Import the express library to create an Express application
 const axios = require('axios')
 
-
 // Mount the userRoutes on the '/users' path
 router.use('/users', userRoutes);
-// Define a route for handling POST requests to '/generate-workout-plan'
+
 router.post('/generate-workout-plan', async (req, res) => {
   try {
     // Extract user responses from the request body
@@ -23,7 +22,7 @@ router.post('/generate-workout-plan', async (req, res) => {
         "messages": [
           {
             "role": "system",
-            "content": "You are a helpful assistant."
+            "content": "You are a helpful assistant that designs personalized exercise programs. Return the response in formatted HTML with white text and no background color. Make a 1 month plan with a weely schedule for workouts given the user's input."
           },
           {
             "role": "user",
@@ -50,16 +49,36 @@ router.post('/generate-workout-plan', async (req, res) => {
 function generatePrompt({
   age,
   currentWeight,
-  currentHeight,
+  height,
   targetWeight,
   fitnessGoals,
+  gym,
+  fitnessEquipment,
+  outdoorActivities,
+  daysAvailable,
+  exerciseIntensity,
+  currentFitness,
+  focus,
+  tracking,
+  existingMedicalConditions
 }) {
   return `User age: ${age}\n` +
          `Current weight: ${currentWeight}\n` +
-         `Current height: ${currentHeight}\n` +
+         `height: ${height}\n` +
          `Target weight: ${targetWeight}\n` +
          `Fitness goals: ${fitnessGoals}\n` +
+         `gym: ${gym}\n` +
+         `fitnessEquipment: ${fitnessEquipment}\n` +
+         `outdoorActivities: ${outdoorActivities}\n` +
+         `daysAvailable: ${daysAvailable}\n` +
+         `exerciseIntensity: ${exerciseIntensity}\n` +
+         `currentFitness: ${currentFitness}\n` +
+         `focus: ${focus}\n` +
+         `tracking: ${tracking}\n` +
+         `existingMedicalConditions: ${existingMedicalConditions}\n` +
          'Generate a personalized workout plan:';
 }
+
+
 // Export the router for use in other parts of the application
 module.exports = router;
