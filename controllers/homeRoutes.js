@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { User } = require('../models');
+const bcrypt = require('bcrypt');
 
 const withAuth = require('../utils/auth.js');
 
@@ -52,6 +53,7 @@ router.get('/profile', withAuth, async (req, res) => {
     res.status(500).json(err)
   }
 })
+
 
 router.get('/login', (req, res) => {
   if (req.session.logged_in) {
