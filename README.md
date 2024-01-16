@@ -20,18 +20,16 @@ inquirer
 mysql2
 console.table
 ## Usage
-${usage}
+The user will click "Get Started" on the homepage and will be taken to a series of evaluation questions regarding their fitness status and goals. They then click "Submit" and the application will generate a workout plan based on their evaluation responses. In the bottom right corner of the web page is an icon that will open a chat bot. The chat bot can be used for clarification and further information about the user's customized workout plan. There is also a Sign Up and Log In feature.
 ## Features
 ${features}
 ## Contributing
 ${contributing}
 ## License
 [Mit License](https://choosealicense.com/licenses/mit/#)
-## Tests
-${tests}
 ## Questions
-- [bjpippenger]()
-- [send-email-to]()
+- Email: [hillmatt58@gmail.com]()
+- GitHub: [crunchwrapdestroyer]()
 - [recording-of-working-application]()
 ## Screenshots
 ${screenshots}
