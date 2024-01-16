@@ -8,14 +8,6 @@ const axios = require('axios')
 // Mount the userRoutes on the '/users' path
 router.use('/users', userRoutes);
 
-router.post('/save-answers', (req, res) => {
-  const { question1, question2, question3, question4, question5, question6, question7, question8, question9, question10, question11, question12, question13, question14, } = req.body;
-  const insertQuery = `
-    INSERT INTO user_responses (age, currentWeight, height, targetWeight, fitnessGoals,gym,fitnessEquipment,outdoorActivities,daysAvailable,exerciseIntensity,currentFitness,focus,tracking,existingMedicalConditions)
-    VALUES (?, ?, ?, ?, ?)
-  `;
-});
-
 router.post('/generate-workout-plan', async (req, res) => {
   try {
     // Extract user responses from the request body
@@ -30,7 +22,7 @@ router.post('/generate-workout-plan', async (req, res) => {
         "messages": [
           {
             "role": "system",
-            "content": "You are a helpful assistant."
+            "content": "You are a helpful assistant that designs personalized exercise programs. Return the response in formatted HTML with white text and no background color. Make a 1 month plan with a weely schedule for workouts given the user's input."
           },
           {
             "role": "user",
@@ -86,5 +78,7 @@ function generatePrompt({
          `existingMedicalConditions: ${existingMedicalConditions}\n` +
          'Generate a personalized workout plan:';
 }
+
+
 // Export the router for use in other parts of the application
 module.exports = router;

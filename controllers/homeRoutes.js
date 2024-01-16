@@ -3,7 +3,6 @@ const { User } = require('../models');
 
 const withAuth = require('../utils/auth.js');
 
-
 router.get('/', async (req, res) => {
   try {
                                // data to be requested 
@@ -14,57 +13,16 @@ router.get('/', async (req, res) => {
  
 });
 
-router.get('/homepage', async (req, res) => {
-  try {
-                                // data to be requested 
-    res.render('homepage')
-  } catch (err) {
-    res.status(500).json(err); // error handling
-  }
-
-});
-
-
 //questions get routes
-router.get('/questions1', async (req, res) => {
+router.get('/evaluation', async (req, res) => {
   try { 
                                 // data to be requested 
-    res.render('questions1')
+    res.render('evaluation')
   } catch (err) {
     res.status(500).json(err); // error handling
   }
  
 });
-router.get('/questions2', async (req, res) => {
-try {
-                              // data to be requested
-  res.render('questions2')
-} catch (err) {
-  res.status(500).json(err); // error handling
-}
-
-});
-router.get('/questions3', async (req, res) => {
-  try {
-                              // data to be requested
-    res.render('questions3')
-  }
-  catch (err) {
-    res.status(500).json(err); // error handling
-  }
-});
-//route for 
-
-router.get('/apiresponse', async (req, res) => {
-  try {
-                              // data to be requested
-    res.render('apiresponse')
-  }
-  catch (err) {
-    res.status(500).json(err); // error handling
-  }
-}); 
-
 
 router.get('/signup', async (req, res) => {
   try {
@@ -75,7 +33,6 @@ router.get('/signup', async (req, res) => {
     res.status(500).json(err)
   }
 })
-
 
 router.get('/profile', withAuth, async (req, res) => {
   try {
@@ -95,7 +52,6 @@ router.get('/profile', withAuth, async (req, res) => {
     res.status(500).json(err)
   }
 })
-
 
 router.get('/login', (req, res) => {
   if (req.session.logged_in) {
