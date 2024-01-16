@@ -50,9 +50,11 @@ body {
     font-family: emoji;
     font-style: italic;
     font-size: xxx-large;
-    text-decoration: none;
     width: fit-content;
     transform: translateX(150px)
+}
+#title-link {
+    text-decoration: none; /* Removes underline */
 }
 .navbar {
     background-color: rgb(31, 83, 74);
@@ -68,7 +70,7 @@ body {
 }
 .collapse.navbar-collapse {
     flex-direction: row-reverse;
-    transform: translateX(-25px);
+    transform: translateX(-25px) translateY(-10%);
     padding-left: 10px;
 }
 .navbar-nav {
@@ -83,7 +85,6 @@ body {
 .container-fluid {
     display: inline-flex;
     flex-direction: row;
-
 }
 .login-container {
     width: 350px;
@@ -103,7 +104,7 @@ body {
     height: auto; /* Maintain the aspect ratio */
     position: absolute;
     top: 10px; /* Adjust the top position to your desired value */
-    left: 250px; /* Adjust the left position to your desired value */
+    left: 10px; /* Adjust the left position to your desired value */
   }
 #workoutPlanContainer {
     transform: translateX(27%) translateY(60px)
